@@ -19,13 +19,17 @@ public class PuertaFinal : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Verifica si el objeto que colisiona tiene el tag "Player"
         if (other.CompareTag("Player") && aparecer)
         {
-            // Llama a un método o realiza alguna acción cuando colisiona con el jugador
-            SceneManager.LoadScene(1);
+            int escenaActual = SceneManager.GetActiveScene().buildIndex;
+            int totalEscenas = SceneManager.sceneCountInBuildSettings;
+
+            int siguienteEscena = (escenaActual + 1) % totalEscenas;
+
+            SceneManager.LoadScene(siguienteEscena);
         }
     }
+
 
 
     IEnumerator AumentarEscala()
